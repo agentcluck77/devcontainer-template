@@ -63,11 +63,18 @@ else
   log "Miniforge already present"
 fi
 
+CONDA_BIN="$MINIFORGE_HOME/bin/conda"
+if [ ! -x "$CONDA_BIN" ]; then
+  log "Conda binary not found at $CONDA_BIN"
+  exit 1
+fi
+
+touch "$HOME/.bashrc"
 if ! grep -q 'conda" shell.bash hook' "$HOME/.bashrc"; then
   log "Adding conda init hook to .bashrc"
   echo 'eval "$("$HOME/miniforge3/bin/conda" shell.bash hook)"' >> "$HOME/.bashrc"
-  source ~/.bashrc
-  conda env config vars set PYTHONPATH=/workspaces/content
 else
   log "Conda init hook already present"
 fi
+
+"$CONDA_BIN" env config vars set -n base PYTHONPATH=/workspaces/content

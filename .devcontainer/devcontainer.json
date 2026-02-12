@@ -15,7 +15,7 @@
         "NVIDIA_DRIVER_CAPABILITIES": "compute,utility"
     },
     //"postCreateCommand": "sudo mkdir -p /home/linuxbrew/.linuxbrew/var && sudo chown -R dev-user:dev-user /home/linuxbrew/.linuxbrew/var || true",
-    "postCreateCommand": "bash ${containerWorkspaceFolder}/.devcontainer/build.sh",
+    "postCreateCommand": "sudo chown -R $(id -u):$(id -g) /home/linuxbrew/.linuxbrew && bash .devcontainer/build.sh",
     "settings": {},
     "extensions": []
 }

@@ -4,6 +4,7 @@
     "containerUser": "dev-user",
     "updateRemoteUserUID": true,
     "workspaceFolder": "/workspaces/content",
+    "workspaceMount": "source=${localWorkspaceFolder},target=/workspaces/content,type=bind",
     // SELinux fix: Disable SELinux label enforcement to prevent permission denied errors
     // This avoids duplicate mount errors that occur when using :Z or :z flags in runArgs
     // Reference: https://github.com/loft-sh/devpod/issues/1283
